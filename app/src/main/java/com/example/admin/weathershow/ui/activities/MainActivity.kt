@@ -7,30 +7,17 @@ import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
-import android.view.View
 import android.widget.Toast
-import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.example.admin.weathershow.R
-import com.example.admin.weathershow.data.apiservice.Api
 import com.example.admin.weathershow.data.entity.FollowersEntity
 import com.example.admin.weathershow.http.RetrofitClient
-import com.example.admin.weathershow.ui.adapters.MyAdapter
 import com.example.admin.weathershow.ui.adapters.MyAdapter1
-import com.example.admin.weathershow.ui.widget.VHDividerItemDecoration
-import io.reactivex.Observable
-import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.Result
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : AppCompatActivity() {
     lateinit var data: kotlin.collections.MutableList<FollowersEntity>
-    var mSkipCount: Int = 0
     lateinit var adapter: MyAdapter1
     lateinit var recyclerView: RecyclerView
 
@@ -47,12 +34,6 @@ class MainActivity : AppCompatActivity() {
         adapter = MyAdapter1(data)
 
         recyclerView.adapter = adapter
-
-//        adapter.setOnClickListener(object : MyAdapter.OnItemClickListener {
-//            override fun setOnItemClickListener(view: View, position: Int) {
-//                Toast.makeText(this@MainActivity, "点击了===" + data[position].login, Toast.LENGTH_SHORT).show()
-//            }
-//        })
 
         adapter.setOnItemClickListener { adapter, view, position ->
             Toast.makeText(this@MainActivity, "点击了===" + data[position].login, Toast.LENGTH_SHORT).show()
